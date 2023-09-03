@@ -1,0 +1,18 @@
+[
+{
+  "model": "polls.question",
+  "pk": 2,
+  "fields": {
+    "question_text": "what game do you want to play",
+    "pub_date": "2023-09-03T13:24:12Z"
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 3,
+  "fields": {
+    "question_text": "What’s your favorite food?",
+    "pub_date": "2023-09-03T13:24:52Z"
+  }
+}
+]
