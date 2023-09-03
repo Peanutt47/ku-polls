@@ -9,7 +9,21 @@ https://cpske.github.io/ISP) course at Kasetsart University.
 
 ## Install and Run
 
-to be added.
+1. Clone this repository
+    ```commandline
+    https://github.com/Peanutt47/ku-polls.git
+    ```
+2. Install the required libraries
+    ```commandline
+    cd ku-polls
+    ```
+    ```commandline
+    pip install -r requirements.txt
+    ```
+3. Run the program
+    ```commandline
+    python manage.py runserver
+    ```
 
 ## Project Documents
 
