@@ -1,2 +1,17 @@
-# created by virtualenv automatically
-venv/bin
+__pycache__/
+*.py
+
+.idea/
+
+# Django stuff:
+db.sqlite3
+#db.sqlite3-journal
+
+# Environments and settings
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
