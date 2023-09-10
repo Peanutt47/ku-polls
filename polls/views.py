@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
+from django.contrib import messages
 
 # Create your views here.
 
@@ -64,7 +65,7 @@ def vote(request: HttpRequest, question_id: int) -> HttpResponse:
         # Redisplay the question voting form.
         return render(request, 'polls/detail.html', {
             'question': question,
-            'error_message': "You didn't select a choice.",
+            'message': 'You didn\'t select a choice.',
         })
     else:
         selected_choice.votes += 1
