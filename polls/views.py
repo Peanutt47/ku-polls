@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 from django.contrib import messages
+from django.shortcuts import redirect
 
 # Create your views here.
 
@@ -34,6 +35,25 @@ class DetailView(generic.DetailView):
         Excludes any questions that aren't published yet.
         """
         return Question.objects.filter(pub_date__lte=timezone.now())
+    
+    def get(self, request, **kwargs):
+        try:
+            self.object = self.get_object()
+        except Http404:
+            # Handle the case where the object is not found
+            messages.error(request, "Poll not found.")
+            return redirect('polls:index')
+
+        if not self.object.is_published():
+            messages.error(request, "This question is not published yet.")
+            return redirect('polls:index')
+
+        if not self.object.can_vote():
+            messages.error(request, "Voting for this poll is not allowed.")
+            return redirect('polls:index')
+
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
 
 
 class ResultsView(generic.DetailView):
