@@ -13,6 +13,7 @@ from django.shortcuts import redirect
 
 
 class IndexView(generic.ListView):
+    """Generic view for the index page."""
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
 
@@ -27,6 +28,7 @@ class IndexView(generic.ListView):
 
 
 class DetailView(generic.DetailView):
+    """Generic view for the detail page."""
     model = Question
     template_name = 'polls/detail.html'
 
@@ -37,6 +39,7 @@ class DetailView(generic.DetailView):
         return Question.objects.filter(pub_date__lte=timezone.now())
     
     def get(self, request, **kwargs):
+        """Handle GET requests."""
         try:
             self.object = self.get_object()
         except Http404:
@@ -57,27 +60,32 @@ class DetailView(generic.DetailView):
 
 
 class ResultsView(generic.DetailView):
+    """Generic view for the results page."""
     model = Question
     template_name = 'polls/results.html'
 
 
 def index(request: HttpRequest) -> HttpResponse:
+    """View for the index page."""
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
     context = {'latest_question_list': latest_question_list}
     return render(request, 'polls/index.html', context)
 
 
 def detail(request: HttpRequest, question_id: int) -> HttpResponse:
+    """View for the detail page."""
     question = get_object_or_404(Question, pk=question_id)
     return render(request, 'polls/detail.html', {'question': question})
 
 
 def results(request: HttpRequest, question_id: int) -> HttpResponse:
+    """View for the results page."""
     question = get_object_or_404(Question, pk=question_id)
     return render(request, 'polls/results.html', {'question': question})
 
 
 def vote(request: HttpRequest, question_id: int) -> HttpResponse:
+    """View for the voting page."""
     question = get_object_or_404(Question, pk=question_id)
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
