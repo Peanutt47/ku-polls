@@ -30,6 +30,7 @@ https://cpske.github.io/ISP) course at Kasetsart University.
 
 All project documents are in the [Project Wiki](../../wiki/Home).
 
+- [Product backlog](https://github.com/users/Peanutt47/projects/1/views/1)
 - [Vision Statement](../../wiki/Vision%20Statement)
 - [Requirements](../../wiki/Requirements)
 - [Development Plan](../../wiki/Development)
