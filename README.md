@@ -23,6 +23,10 @@ https://cpske.github.io/ISP) course at Kasetsart University.
     ```
 3. Run the program
     ```commandline
+    python manage.py makemigrations
+    python manage.py migrate
+    ```
+    ```commandline
     python manage.py runserver
     ```
 
