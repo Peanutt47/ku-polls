@@ -1,0 +1,132 @@
+[
+{
+  "model": "polls.question",
+  "pk": 1,
+  "fields": {
+    "question_text": "what game do you want to play",
+    "pub_date": "2023-09-10T08:34:50Z",
+    "end_date": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 2,
+  "fields": {
+    "question_text": "What’s your favorite food?",
+    "pub_date": "2023-09-10T08:35:04Z",
+    "end_date": null
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 1,
+  "fields": {
+    "question": 1,
+    "choice_text": "Valorant"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 3,
+  "fields": {
+    "question": 1,
+    "choice_text": "League of Legends"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 4,
+  "fields": {
+    "question": 1,
+    "choice_text": "sid meier's civilization"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 5,
+  "fields": {
+    "question": 2,
+    "choice_text": "Pad Thai (Stir-Fried Noodles)"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 6,
+  "fields": {
+    "question": 2,
+    "choice_text": "Tom Yum Goong (Hot & Sour Shrimp Soup)"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 7,
+  "fields": {
+    "question": 2,
+    "choice_text": "Kaeng Lueang (Yellow Curry)"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 8,
+  "fields": {
+    "question": 2,
+    "choice_text": "Gaeng Daeng (Red Curry)"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 10,
+  "fields": {
+    "question": 2,
+    "choice_text": "Khao Soi (Thai Coconut Curry Noodle Soup)"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 11,
+  "fields": {
+    "question": 2,
+    "choice_text": "Khao Pad (Thai Fried Rice)"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 14,
+  "fields": {
+    "question": 2,
+    "choice_text": "Gaeng Keow Wan Gai (Green Curry)"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 15,
+  "fields": {
+    "question": 2,
+    "choice_text": "Pad Kra Pao Moo (Stir-Fried Thai Basil & Pork)"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 16,
+  "fields": {
+    "question": 2,
+    "choice_text": "Som Tam (Spicy Green Papaya Salad)"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 17,
+  "fields": {
+    "question": 2,
+    "choice_text": "Laab (Spicy Salad)"
+  }
+},
+{
+  "model": "polls.vote",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "choice": 6
+  }
+}
+]
