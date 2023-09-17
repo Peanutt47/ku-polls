@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
-from .models import Question, Choice
+from .models import Question, Choice, Vote
 from django.template import loader
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
@@ -8,6 +8,7 @@ from django.views import generic
 from django.utils import timezone
 from django.contrib import messages
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -54,9 +55,19 @@ class DetailView(generic.DetailView):
         if not self.object.can_vote():
             messages.error(request, "Voting for this poll is not allowed.")
             return redirect('polls:index')
+        question = get_object_or_404(Question, pk=kwargs['pk'])
+        user = request.user
 
-        context = self.get_context_data(object=self.object)
-        return self.render_to_response(context)
+        try:
+            selected_choice = question.choice_set.get(vote__user=user)
+        except Choice.DoesNotExist:
+            selected_choice = None
+
+        context = {
+            'question': question,
+            'selected_choice': selected_choice,
+        }
+        return render(request, 'polls/detail.html', context)
 
 
 class ResultsView(generic.DetailView):
@@ -72,18 +83,12 @@ def index(request: HttpRequest) -> HttpResponse:
     return render(request, 'polls/index.html', context)
 
 
-def detail(request: HttpRequest, question_id: int) -> HttpResponse:
-    """View for the detail page."""
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'polls/detail.html', {'question': question})
-
-
 def results(request: HttpRequest, question_id: int) -> HttpResponse:
     """View for the results page."""
     question = get_object_or_404(Question, pk=question_id)
     return render(request, 'polls/results.html', {'question': question})
 
-
+@login_required
 def vote(request: HttpRequest, question_id: int) -> HttpResponse:
     """View for the voting page."""
     question = get_object_or_404(Question, pk=question_id)
@@ -95,10 +100,19 @@ def vote(request: HttpRequest, question_id: int) -> HttpResponse:
             'question': question,
             'message': 'You didn\'t select a choice.',
         })
-    else:
-        selected_choice.votes += 1
-        selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+    
+    this_user = request.user
+    
+    try:
+        # Try to find a vote by this user for this question
+        vote = Vote.objects.get(user=this_user, choice__question=question)
+        # Update the user's vote
+        vote.choice = selected_choice
+    except Vote.DoesNotExist:
+        # If no matching vote, create a new one
+        vote = Vote(user=this_user, choice=selected_choice)
+    
+    vote.save()
+    messages.success(request, f"Your vote for {selected_choice.choice_text} has been saved.")
+    # Redirect to the results page after voting
+    return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))

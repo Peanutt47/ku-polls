@@ -31,12 +31,25 @@ class Question(models.Model):
         else:
             return self.pub_date <= now <= self.end_date
 
-
 class Choice(models.Model):
     """A choice for a question in the poll."""
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
 
+    @property
+    def votes(self):
+        """Return the number of votes for this choice."""
+        return self.vote_set.count()
+      
+
     def __str__(self):
         return self.choice_text
+    
+class Vote(models.Model):
+    """Record a choice for a question made by a user."""
+    user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
+    choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user.username} voted for {self.choice.choice_text}"
