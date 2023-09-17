@@ -10,20 +10,20 @@ class Question(models.Model):
     pub_date = models.DateTimeField('date published')
     end_date = models.DateTimeField('date ended', null=True, blank=True)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.question_text
 
-    def was_published_recently(self):
+    def was_published_recently(self) -> bool:
         """Return True if the question was published within the last day."""
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.pub_date <= now
     
-    def is_published(self):
+    def is_published(self) -> bool:
         """Return True if the question is published."""
         now = timezone.localtime(timezone.now())
         return self.pub_date <= now
     
-    def can_vote(self):
+    def can_vote(self) -> bool:
         """Return True if the question can be voted on."""
         now = timezone.localtime(timezone.now())
         if self.end_date is None:
