@@ -58,16 +58,20 @@ class DetailView(generic.DetailView):
         question = get_object_or_404(Question, pk=kwargs['pk'])
         user = request.user
 
-        try:
-            selected_choice = question.choice_set.get(vote__user=user)
-        except Choice.DoesNotExist:
-            selected_choice = None
+        if user.is_authenticated:
+            try:
+                selected_choice = question.choice_set.get(vote__user=user)
+            except Choice.DoesNotExist:
+                selected_choice = None
 
-        context = {
-            'question': question,
-            'selected_choice': selected_choice,
-        }
-        return render(request, 'polls/detail.html', context)
+            context = {
+                'question': question,
+                'selected_choice': selected_choice,
+            }
+            return render(request, 'polls/detail.html', context)
+        else:
+            context = self.get_context_data(object=self.object)
+            return self.render_to_response(context)
 
 
 class ResultsView(generic.DetailView):
@@ -81,6 +85,25 @@ def index(request: HttpRequest) -> HttpResponse:
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
     context = {'latest_question_list': latest_question_list}
     return render(request, 'polls/index.html', context)
+
+
+def detail(request: HttpRequest, question_id: int) -> HttpResponse:
+    """View for the detail page."""
+    # question = get_object_or_404(Question, pk=question_id)
+    # user = request.user
+
+    # try:
+    #     selected_choice = user.vote_set.get(choice__question=question)
+    # except Choice.DoesNotExist:
+    #     selected_choice = 'cat'
+
+    # context = {
+    #     'question': question,
+    #     'selected_choice': selected_choice,
+    # }
+    # return render(request, 'polls/detail.html', context)
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'polls/detail.html', {'question': question})
 
 
 def results(request: HttpRequest, question_id: int) -> HttpResponse:
