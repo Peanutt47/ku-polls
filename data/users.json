@@ -22,7 +22,7 @@
   "pk": 2,
   "fields": {
     "password": "pbkdf2_sha256$600000$edzCLjVh2eVhPOBo9JinfS$TXuGhc6nBJq8U78/5Fs3mfa8tfyW6EAlwT61sjYdre8=",
-    "last_login": "2023-09-17T14:11:57.473Z",
+    "last_login": "2023-09-18T06:03:18.508Z",
     "is_superuser": false,
     "username": "Peanutt",
     "first_name": "Phiranat",
