@@ -3,7 +3,7 @@
   "model": "polls.question",
   "pk": 1,
   "fields": {
-    "question_text": "what game do you want to play",
+    "question_text": "What’s your favorite game?",
     "pub_date": "2023-09-10T08:34:50Z",
     "end_date": null
   }
@@ -15,30 +15,6 @@
     "question_text": "What’s your favorite food?",
     "pub_date": "2023-09-10T08:35:04Z",
     "end_date": null
-  }
-},
-{
-  "model": "polls.choice",
-  "pk": 1,
-  "fields": {
-    "question": 1,
-    "choice_text": "Valorant"
-  }
-},
-{
-  "model": "polls.choice",
-  "pk": 3,
-  "fields": {
-    "question": 1,
-    "choice_text": "League of Legends"
-  }
-},
-{
-  "model": "polls.choice",
-  "pk": 4,
-  "fields": {
-    "question": 1,
-    "choice_text": "sid meier's civilization"
   }
 },
 {
@@ -122,11 +98,99 @@
   }
 },
 {
-  "model": "polls.vote",
-  "pk": 1,
+  "model": "polls.choice",
+  "pk": 18,
   "fields": {
-    "user": 2,
-    "choice": 6
+    "question": 1,
+    "choice_text": "League of Legends"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 19,
+  "fields": {
+    "question": 1,
+    "choice_text": " Valorant"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 20,
+  "fields": {
+    "question": 1,
+    "choice_text": " Dungeon Fighter Online"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 21,
+  "fields": {
+    "question": 1,
+    "choice_text": " Counter-Strike: Global Offensive"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 22,
+  "fields": {
+    "question": 1,
+    "choice_text": " World of Warcraft"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 23,
+  "fields": {
+    "question": 1,
+    "choice_text": " Minecraft"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 24,
+  "fields": {
+    "question": 1,
+    "choice_text": "PlayerUnknown’s Battlegrounds"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 25,
+  "fields": {
+    "question": 1,
+    "choice_text": "Valheim"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 26,
+  "fields": {
+    "question": 1,
+    "choice_text": "Apex Legends"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 27,
+  "fields": {
+    "question": 1,
+    "choice_text": "Grand Theft Auto V"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 28,
+  "fields": {
+    "question": 1,
+    "choice_text": "Other"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 29,
+  "fields": {
+    "question": 2,
+    "choice_text": "Other"
   }
 }
 ]
