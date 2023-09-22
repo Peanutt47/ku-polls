@@ -4,28 +4,42 @@
     ```
 2. create a virtual environment and install dependencies
     ```
+    cd ku-polls
     python -m venv venv
-    venv/bin/activate
-    pip install -r requirement.txt
+    source venv/bin/activate
+    pip install -r requirements.txt
+    ```
+    or
+    ```
+    cd ku-polls
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
     ```
     *** Note ***
     If you want to deactivate
     ```
     deactivate
     ```
-3. run migrations
+4. run migrations
     ```
+    python manage.py makemigrations
     python manage.py migrate
     ```
-4. run tests
+    or
+    ```
+    python3 manage.py makemigrations
+    python3 manage.py migrate
+    ```
+6. run tests
     ```
     python manage.py test polls
     ```
-5. Dump data only for the Question and Choice tables (no votes).
-   ```
-   python manage.py dumpdata --indent=2 polls.question polls.choice
-   ```
-   Dump the auth.user data to a file data/users.json
-   ```
-   python manage.py dumpdata --indent=2 -o data/users .json auth.user
-   ```
+7. Load data
+    ```
+    python manage.py loaddata data/polls.json data/users.json
+    ```
+    or
+    ```
+    python3 manage.py loaddata data/polls.json data/users.json
+    ```
