@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
 from .models import Question, Choice, Vote
-from django.template import loader
+# from django.template import loader
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
@@ -38,7 +38,7 @@ class DetailView(generic.DetailView):
         Excludes any questions that aren't published yet.
         """
         return Question.objects.filter(pub_date__lte=timezone.now())
-    
+
     def get(self, request, **kwargs):
         """Handle GET requests."""
         try:
@@ -111,6 +111,7 @@ def results(request: HttpRequest, question_id: int) -> HttpResponse:
     question = get_object_or_404(Question, pk=question_id)
     return render(request, 'polls/results.html', {'question': question})
 
+
 @login_required
 def vote(request: HttpRequest, question_id: int) -> HttpResponse:
     """View for the voting page."""
@@ -123,9 +124,9 @@ def vote(request: HttpRequest, question_id: int) -> HttpResponse:
             'question': question,
             'message': 'You didn\'t select a choice.',
         })
-    
+
     this_user = request.user
-    
+
     try:
         # Try to find a vote by this user for this question
         vote = Vote.objects.get(user=this_user, choice__question=question)
@@ -134,8 +135,10 @@ def vote(request: HttpRequest, question_id: int) -> HttpResponse:
     except Vote.DoesNotExist:
         # If no matching vote, create a new one
         vote = Vote(user=this_user, choice=selected_choice)
-    
+
     vote.save()
-    messages.success(request, f"Your vote for {selected_choice.choice_text} has been saved.")
+    messages.success(request,
+                     f"Your vote for {selected_choice.choice_text}"
+                     f"has been saved.")
     # Redirect to the results page after voting
     return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
