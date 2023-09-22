@@ -10,26 +10,17 @@ https://cpske.github.io/ISP) course at Kasetsart University.
 
 ## Install and Run
 
-1. Clone this repository
-    ```commandline
-    https://github.com/Peanutt47/ku-polls.git
+[Installation](Installation.md) guide.
+
+### How to run
+1. Run server
     ```
-2. Install the required libraries
-    ```commandline
-    cd ku-polls
-    ```
-    ```commandline
-    pip install -r requirements.txt
-    ```
-3. Run the program
-    ```commandline
-    python manage.py makemigrations
-    python manage.py migrate
-    ```
-    ```commandline
     python manage.py runserver
     ```
-
+2. If you didn't deactivate venv you can skip this command
+    ```
+    venv/bin/activate
+    ```
 ## Demo Users
 | Username  | Password        |
 |-----------|-----------------|

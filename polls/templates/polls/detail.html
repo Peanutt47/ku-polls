@@ -37,22 +37,5 @@
         
         <a href="{% url 'polls:index' %}" class="btn btn-secondary mt-3">Back to List of Polls</a>
     </div>
-     
-    <!-- <div class="container mt-4">
-        <form action="{% url 'polls:vote' question.id %}" method="post" onsubmit="">
-            {% csrf_token %}
-            <fieldset>
-                <legend><h1>{{ question.question_text }}</h1></legend>
-                {% for choice in question.choice_set.all %}
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-                        <label class="form-check-label" for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
-                    </div>
-                {% endfor %}
-            </fieldset>
-            <button type="submit" class="btn btn-primary">Vote</button>
-        </form>
-        <a href="{% url 'polls:index' %}" class="btn btn-secondary mt-3">Back to List of Polls</a>
-    </div> -->
 </body>
 </html>
