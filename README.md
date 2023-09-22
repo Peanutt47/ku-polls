@@ -17,9 +17,19 @@ https://cpske.github.io/ISP) course at Kasetsart University.
     ```
     python manage.py runserver
     ```
-2. If you didn't deactivate venv you can skip this command
+    or
     ```
-    venv/bin/activate
+    python3 manage.py runserver
+    ```
+2. If you deactivate venv you need to run this command
+    ```
+    source venv/bin/activate
+    python manage.py runserver
+    ```
+    or
+    ```
+    source venv/bin/activate
+    python3 manage.py runserver
     ```
 ## Demo Users
 | Username  | Password        |

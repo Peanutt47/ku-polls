@@ -23,19 +23,17 @@
     ```
 4. run migrations
     ```
-    python manage.py makemigrations
     python manage.py migrate
     ```
     or
     ```
-    python3 manage.py makemigrations
     python3 manage.py migrate
     ```
-6. run tests
+5. run tests
     ```
     python manage.py test polls
     ```
-7. Load data
+6. Load data
     ```
     python manage.py loaddata data/polls.json data/users.json
     ```
